@@ -1,0 +1,30 @@
+name: NuGet Push
+description: An opinionated action that downloads existing NuGet packages (codebeltnet/dotnet-pack@main) and pushes them to a package source and publishes them.
+inputs:
+  token:
+    description: The NuGet API key.
+    required: true
+  configuration:
+    description: Defines the build configuration. Default is Release.
+    required: true
+    default: 'Release'
+  level:
+    description: Sets the verbosity level of the command. Allowed values are quiet, normal and detailed. The default is quiet.
+    required: true
+    default: 'quiet'
+runs:
+  using: composite
+  steps:
+    - name: Download all artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: NuGet-${{ inputs.configuration }}
+
+    - name: NuGet
+      uses: nuget/setup-nuget@v2
+      with:
+        nuget-version: latest
+
+    - name: Push
+      run: nuget push *.nupkg -Source https://api.nuget.org/v3/index.json -ApiKey ${{ inputs.token }} -Verbosity ${{ inputs.level }} -SkipDuplicate
+      shell: bash

@@ -1,5 +1,5 @@
 name: NuGet Push
-description: An opinionated action that downloads existing NuGet packages (codebeltnet/dotnet-pack@main) and pushes them to a package source and publishes them.
+description: An opinionated action that downloads existing NuGet packages and pushes them to a package source and publishes them.
 inputs:
   token:
     description: The NuGet API key.

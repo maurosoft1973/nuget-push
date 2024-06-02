@@ -20,6 +20,10 @@ runs:
       with:
         name: NuGet-${{ inputs.configuration }}
 
+    - name: Display structure of downloaded files
+      run: ls -R
+      shell: bash
+
     - name: NuGet
       uses: nuget/setup-nuget@v2
       with:

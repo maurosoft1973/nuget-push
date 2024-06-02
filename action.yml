@@ -21,7 +21,9 @@ runs:
         name: NuGet-${{ inputs.configuration }}
 
     - name: Display structure of downloaded files
-      run: ls -R
+      run: |
+        pwd
+        ls -R
       shell: bash
 
     - name: NuGet
@@ -32,7 +34,7 @@ runs:
         nuget-api-key-source: https://api.nuget.org/v3/index.json
 
     - name: Push
-      run: nuget push ${{ github.workspace }}/*.nupkg -Verbosity ${{ inputs.level }} -SkipDuplicate
+      run: nuget push '${{ github.workspace }}/*.nupkg' -SkipDuplicate -Verbosity ${{ inputs.level }}
       shell: bash
 branding:
   icon: 'umbrella'

@@ -29,12 +29,10 @@ runs:
     - name: NuGet
       uses: nuget/setup-nuget@v2
       with:
-        nuget-version: latest
-        nuget-api-key: ${{ inputs.token }}
-        nuget-api-key-source: https://api.nuget.org/v3/index.json
+        nuget-version: 6.9.1
 
     - name: Push
-      run: nuget push '${{ github.workspace }}/*.nupkg' -SkipDuplicate -Verbosity ${{ inputs.level }}
+      run: nuget push *.nupkg -Source https://api.nuget.org/v3/index.json -ApiKey ${{ inputs.token }} -SkipDuplicate -Verbosity ${{ inputs.level }}
       shell: bash
 branding:
   icon: 'umbrella'

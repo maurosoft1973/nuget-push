@@ -32,7 +32,7 @@ runs:
         nuget-api-key-source: https://api.nuget.org/v3/index.json
 
     - name: Push
-      run: nuget push *.nupkg -Verbosity ${{ inputs.level }} -SkipDuplicate
+      run: nuget push ${{ github.workspace }}/*.nupkg -Verbosity ${{ inputs.level }} -SkipDuplicate
       shell: bash
 branding:
   icon: 'umbrella'

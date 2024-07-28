@@ -37,7 +37,7 @@ runs:
         nuget-api-key: ${{ inputs.token }}
 
     - name: Push
-      run: nuget push '${{ github.workspace }}/*.nupkg' -Source ${{ inputs.source }} -SkipDuplicate -Verbosity ${{ inputs.level }}
+      run: nuget push '${{ github.workspace }}/*.nupkg' -Source ${{ inputs.source }} -ApiKey ${{ inputs.token }} -SkipDuplicate -Verbosity ${{ inputs.level }}
       shell: bash
 branding:
   icon: 'umbrella'

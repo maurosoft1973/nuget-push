@@ -12,6 +12,10 @@ inputs:
     description: Defines the build configuration. Default is Release.
     required: true
     default: 'Release'
+  packageName:
+    description: Defines the name of the packet to be sent to the Nuget server
+    required: true
+    default: 'package'
   level:
     description: Sets the verbosity level of the command. Allowed values are quiet, normal and detailed. The default is quiet.
     required: true
@@ -22,7 +26,7 @@ runs:
     - name: Download all artifacts
       uses: actions/download-artifact@v4
       with:
-        name: NuGet-${{ inputs.configuration }}
+        name: ${{ inputs.packageName }}
 
     - name: Display structure of downloaded files
       run: |
